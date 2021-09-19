@@ -1,0 +1,53 @@
+$primary: #fc9400;
+
+@import 'clwebcss';
+
+.navbar,
+.navbar-white {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+@media (min-width: 300px) {
+	.navbar-primary .container {
+		justify-content: center;
+	}
+}
+
+@media (min-width: 660px) {
+	.navbar-primary .container {
+		justify-content: space-between;
+	}
+}
+
+@media (min-width: 300px) {
+	.navbar-white .container {
+		justify-content: center;
+	}
+}
+
+@media (min-width: 660px) {
+	.navbar-white .container {
+		justify-content: space-between;
+	}
+}
+
+.fa-search {
+	width: 25px;
+}
+
+.site-title {
+	font-weight: 400;
+}
+
+.form-control input {
+	padding: 2px;
+}
+
+.btn-white {
+	padding: 0 0 0 0.75rem;
+}
+
+.card {
+	padding: 0;
+}

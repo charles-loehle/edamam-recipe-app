@@ -1,0 +1,37 @@
+%flex-layout {
+	// width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+}
+
+.navbar {
+	// @extend: one selector should inherit the styles of another.
+	// .navbar inherits %flex-layout styles
+	@extend %flex-layout;
+	padding: $base-padding $base-padding * 2;
+	box-shadow: $base-box-shadow;
+
+	.site-title {
+		font-size: $font-size-lg;
+	}
+
+	@media (max-width: 400px) {
+		.site-title {
+			font-size: $base-font-size;
+		}
+	}
+
+	.container {
+		@extend %flex-layout;
+	}
+}
+
+@each $key, $val in $colors {
+	.navbar-#{$key} {
+		@extend .navbar;
+		background-color: $val;
+	}
+}

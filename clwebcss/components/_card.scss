@@ -1,0 +1,32 @@
+@use 'sass:math';
+// @debug $base-padding;
+
+.card {
+	display: block;
+	padding: $base-padding;
+	border: $base-border-thickness solid #ddd;
+	box-shadow: $base-box-shadow;
+	border-radius: math.div($base-border-radius, 4);
+
+	img {
+		width: 100vw;
+	}
+
+	.card-title {
+		font-size: $base-font-size;
+		padding-bottom: $base-padding;
+		font-weight: bold;
+	}
+
+	.card-body {
+		font-size: $base-font-size;
+
+		a {
+			text-decoration: underline;
+		}
+	}
+}
+
+// @debug math.div($base-border-radius, 4);
+// @debug math.$pi;
+// @debug 'test 123';
