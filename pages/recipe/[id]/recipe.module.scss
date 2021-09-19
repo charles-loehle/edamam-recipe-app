@@ -1,9 +1,10 @@
 $primary: #fc9400;
 
 .back {
-	color: blue;
+	color: $primary;
 	text-decoration: underline;
 	margin-left: 1.5rem;
+	font-size: 0.75rem;
 }
 
 .ingredients__list {

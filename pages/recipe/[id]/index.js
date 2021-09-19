@@ -10,7 +10,7 @@ export async function getServerSideProps(context) {
 		`https://api.edamam.com/api/recipes/v2/${context.params.id}?type=public&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1`
 	);
 	const data = await res.json();
-	//console.log(data);
+
 	return {
 		props: { data },
 	};
@@ -18,6 +18,9 @@ export async function getServerSideProps(context) {
 
 export default function Recipe({ data }) {
 	const { digest, label, ingredientLines, url } = data.recipe;
+
+	console.log(digest);
+
 	return (
 		<>
 			<nav className="navbar">
@@ -32,7 +35,7 @@ export default function Recipe({ data }) {
 				</div>
 			</nav>
 			<div className="container mt-3 mb-2">
-				<h1 className="recipe-title font-xxl font-wt-500">{label}</h1>
+				<h1 className="recipe-title font-xxl font-wt-600 mt-1">{label}</h1>
 				<a href={url} target="_blank" rel="noopener noreferrer">
 					<Image
 						src={data.recipe.image}
@@ -53,59 +56,72 @@ export default function Recipe({ data }) {
 						<li key={index}>{ingredient}</li>
 					))}
 				</ul>
-				<h2 className="nutrition-title font-xl font-wt-500 mt-1">Nutrition</h2>
+				<h2 className="nutrition-title font-xl font-wt-600 mt-2">Nutrition</h2>
 				<div className="fats">
-					<p className="font-wt-500 font-lg">{digest[0].label}</p>
-					<ul>
-						{digest[0].sub.map((fat, index) => (
-							<li key={index}>
-								{fat.label}: {fat.total}
-								{fat.unit}
-							</li>
-						))}
+					<p className="font-wt-500 font-lg">{digest[0].label}s</p>
+					<ul className="text-gray">
+						{digest[0].sub.map((fat, index) => {
+							const { total } = fat;
+							return (
+								<li key={index}>
+									{fat.label}:{' '}
+									<span className="text-black font-wt-700">
+										{total.toFixed(2)} {fat.unit}
+									</span>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
-				<div className="carbs mt-2">
+				<div className="carbs mt-1">
 					<p className="font-wt-500 font-lg">{digest[1].label}</p>
 					<ul className="text-gray">
-						{digest[1].sub.map((carb, index) => (
-							<li key={index}>
-								{carb.label}: {carb.total}
-								{carb.unit}
-							</li>
-						))}
+						{digest[1].sub.map((carb, index) => {
+							const { total } = carb;
+							return (
+								<li key={index}>
+									{carb.label}:{' '}
+									<span className="text-black font-wt-700">
+										{total.toFixed(2)} {carb.unit}
+									</span>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
-				<div className="protein mt-2">
+				<div className="protein mt-1">
 					<p className="font-wt-500 font-lg">{digest[2].label}</p>
 					<ul className="text-gray">
 						<li>
-							{digest[2].total}
-							{digest[2].unit}
+							<span className="text-black font-wt-700">
+								{digest[2].total.toFixed(2)} {digest[2].unit}
+							</span>
 						</li>
 					</ul>
 				</div>
-				<div className="cholesterol mt-2">
+				<div className="cholesterol mt-1">
 					<p className="font-wt-500 font-lg">{digest[3].label}</p>
 					<ul className="text-gray">
 						<li>
-							{digest[3].total}
-							{digest[3].unit}
+							<span className="text-black font-wt-700">
+								{digest[3].total.toFixed(2)} {digest[3].unit}
+							</span>
 						</li>
 					</ul>
 				</div>
-				<div className="sodium mt-2">
+				<div className="sodium mt-1">
 					<p className="font-wt-500 font-lg">{digest[4].label}</p>
 					<ul className="text-gray">
 						<li>
-							{digest[4].total}
-							{digest[4].unit}
+							<span className="text-black font-wt-700">
+								{digest[4].total.toFixed(2)} {digest[4].unit}
+							</span>
 						</li>
 					</ul>
 				</div>
 				<div className="action-buttons mt-2">
 					<a
-						className="btn-primary text-white"
+						className="btn-primary text-white font-sm"
 						href={url}
 						target="_blank"
 						rel="noopener noreferrer"
