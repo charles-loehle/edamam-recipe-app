@@ -19,7 +19,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
-	console.log(data);
+	// console.log(data);
 	const { _links, hits: defaultHits = [] } = data;
 
 	/* =================== PAGINATION */
@@ -31,10 +31,10 @@ export default function Home({ data }) {
 		..._links,
 		current: defaultEndpoint, // on page load, defaultEndpoint
 	});
-	console.log(page);
+	//console.log(page);
 	const { current, next } = page;
-	console.log(current); // https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1
-	console.log(next); // same url as current but the app_key is hashed
+	//console.log(current); // https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1
+	//console.log(next); // same url as current but the app_key is hashed
 
 	useEffect(() => {
 		if (current === defaultEndpoint) return;
@@ -55,8 +55,7 @@ export default function Home({ data }) {
 				return;
 			}
 
-			// if we clicked the load more button, combine previous results with new results.
-			/* TODO: FIND A WAY TO GET LINK TO PREVIOUS PAGE AND STORE IT IN STATE 'preve' */
+			// if we clicked the load more button, update the hits array by concatinating the next page api call results with the current page api call results
 			updateHits(current => {
 				return [...current, ...nextData.hits];
 			});
@@ -154,22 +153,19 @@ export default function Home({ data }) {
 				</div>
 
 				<div className="display-f justify-content-c">
-					<button className="btn-secondary text-white" onClick={handleLoadMore}>
+					<button className="btn-primary text-white" onClick={handleLoadMore}>
 						Load More
 					</button>
 				</div>
 			</main>
 
-			<footer className="footer">
+			<footer className="footer text-center mt-4 bg-light-gray">
 				<a
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+					href="https://clwebdevelopment.com"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					Powered by{' '}
-					<span className="logo">
-						<Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-					</span>
+					Copyright © 2021 CLWebDevelopment
 				</a>
 			</footer>
 		</>

@@ -158,6 +158,17 @@ $utilities: (
 			'xxl': $font-size-xxl,
 		),
 	),
+	'font-weight': (
+		'prefix': 'font-wt',
+		'values': (
+			'200': 200,
+			'300': 300,
+			'400': 400,
+			'500': 500,
+			'600': 600,
+			'700': 700,
+		),
+	),
 	'text-align': (
 		'prefix': 'text',
 		'values': (
