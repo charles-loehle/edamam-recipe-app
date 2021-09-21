@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const defaultEndpoint =
-	'https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1';
+const appID = process.env.NEXT_PUBLIC_APP_ID;
+const appKey = process.env.NEXT_PUBLIC_APP_KEY;
+
+const defaultEndpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${appID}&app_key=${appKey}`;
 
 export async function getServerSideProps() {
 	const res = await fetch(defaultEndpoint);

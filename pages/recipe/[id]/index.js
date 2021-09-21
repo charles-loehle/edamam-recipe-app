@@ -3,11 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './recipe.module.scss';
 
+const appID = process.env.NEXT_PUBLIC_APP_ID;
+const appKey = process.env.NEXT_PUBLIC_APP_KEY;
+
 export async function getServerSideProps(context) {
 	//console.log(context.query); // {id: 'recipe_1234567890'}
 	//console.log(context.params.id); // recipe_1234567890
 	const res = await fetch(
-		`https://api.edamam.com/api/recipes/v2/${context.params.id}?type=public&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1`
+		`https://api.edamam.com/api/recipes/v2/${context.params.id}?type=public&app_id=${appID}&app_key=${appKey}`
 	);
 	const data = await res.json();
 
@@ -19,7 +22,7 @@ export async function getServerSideProps(context) {
 export default function Recipe({ data }) {
 	const { digest, label, ingredientLines, url } = data.recipe;
 
-	console.log(digest);
+	// console.log(digest);
 
 	return (
 		<>
