@@ -1,0 +1,35 @@
+// Favorites
+.Favorites {
+	h3 {
+		text-align: center;
+	}
+
+	.favorite-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		min-height: 6rem;
+
+		.Favorite {
+			position: relative;
+			margin: 1rem;
+
+			img {
+				border-radius: 50%;
+			}
+
+			p {
+				font-size: 0.8rem;
+			}
+
+			button {
+				color: red;
+				border-radius: 50%;
+				border: none;
+				padding: 0;
+				width: 1rem;
+				cursor: pointer;
+			}
+		}
+	}
+}

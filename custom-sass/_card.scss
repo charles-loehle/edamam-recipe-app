@@ -1,0 +1,32 @@
+// Card styles
+.card {
+	padding: 0;
+
+	.card-title {
+		padding: 0;
+		margin: 0;
+	}
+
+	.action-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem;
+	}
+
+	button.fav-btn {
+		border-radius: 50%;
+		padding: 3px 3px 1px;
+		border: 1px solid lightgray;
+		background: lightgrey;
+		cursor: pointer;
+
+		.fa-heart {
+			font-size: 1rem;
+		}
+
+		.fa-heart.faved {
+			color: red;
+		}
+	}
+}

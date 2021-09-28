@@ -1,73 +1,18 @@
 $primary: #fc9400;
 
 @import 'clwebcss';
+@import 'navbar';
+@import 'favorites';
+@import 'card';
 
-.navbar {
-	padding: 1.5rem 0 1.5rem 0;
+.sub-header h2 {
+	text-align: center;
 }
 
-@media (max-width: 440px) {
-	.navbar .container {
-		justify-content: center;
-	}
-	form.form {
-		margin-top: 1rem;
-	}
-}
-
-// @media (min-width: 300px) {
-// 	.navbar-primary .container {
-// 		justify-content: center;
-// 	}
-// }
-
-// @media (min-width: 660px) {
-// 	.navbar-primary .container {
-// 		justify-content: space-between;
-// 	}
-// }
-
-// @media (min-width: 300px) {
-// 	.navbar-white .container {
-// 		justify-content: center;
-// 	}
-// }
-
-// @media (min-width: 660px) {
-// 	.navbar-white .container {
-// 		justify-content: space-between;
-// 	}
-// }
-
-.fa-search {
-	width: 25px;
-}
-
-.site-title {
-	font-weight: 400;
-}
-
-.form-control input {
-	padding: 2px;
-}
-
-// search bar magnifying glass icon
-.btn-white {
-	padding: 0 0 0 0.75rem;
-}
-
-.card {
-	padding: 0;
-}
-
+// Footer styles
 footer {
 	height: 10vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-.Favorite button {
-	color: red;
-	width: 30px;
 }

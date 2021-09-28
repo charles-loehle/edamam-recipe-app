@@ -118,7 +118,12 @@ export default function Home({ data }) {
 	}
 
 	function handleAddToFavs(recipeId, image, label) {
-		console.log(recipeId);
+		// console.log(favorites.find(item => item.recipeId === recipeId));
+		// check if favorite already exists
+		if (favorites.find(item => item.recipeId === recipeId)) {
+			return;
+		}
+		// if not, save to favorites and localStorage
 		setFavorites([...favorites, { recipeId, image, label }]);
 		saveLocalFavs(favorites);
 	}
@@ -156,8 +161,10 @@ export default function Home({ data }) {
 				</div>
 			</nav>
 			<main className="container mt-3">
-				<Favorites favorites={favorites} setFavorites={setFavorites} />
-
+				<div className="sub-header">
+					<Favorites favorites={favorites} setFavorites={setFavorites} />
+					{/* <h2>Recipe Results</h2> */}
+				</div>
 				<div className="row gap-2">
 					{hits.map((result, index) => {
 						const { image, label } = result.recipe;
@@ -180,16 +187,25 @@ export default function Home({ data }) {
 												height={400}
 											/>
 											{/* <img src={image} alt="recipe image" /> */}
-											<h3 className="card-title m-1">{label}</h3>
+
 											<div className="recipe-thumbnail"></div>
 										</a>
 									</Link>
-									<button
-										className="fav-btn"
-										onClick={() => handleAddToFavs(recipeId, image, label)}
-									>
-										<i className="fas fa-heart"></i>
-									</button>
+									<div className="action-container">
+										<h3 className="card-title m-1">{label}</h3>
+										<button
+											className="fav-btn"
+											onClick={() => handleAddToFavs(recipeId, image, label)}
+										>
+											<i
+												className={`fas fa-heart ${
+													favorites.find(item => item.recipeId === recipeId)
+														? 'faved'
+														: ''
+												}`}
+											></i>
+										</button>
+									</div>
 								</div>
 							</div>
 						);
