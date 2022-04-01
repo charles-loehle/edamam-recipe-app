@@ -1,6 +1,7 @@
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ['www.edamam.com'],
+		domains: ['edamam-product-images.s3.amazonaws.com', 'www.edamam.com'],
 	},
 };
+

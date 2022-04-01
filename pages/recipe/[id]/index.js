@@ -7,8 +7,8 @@ const appID = process.env.NEXT_PUBLIC_APP_ID;
 const appKey = process.env.NEXT_PUBLIC_APP_KEY;
 
 export async function getServerSideProps(context) {
-	//console.log(context.query); // {id: 'recipe_1234567890'}
-	//console.log(context.params.id); // recipe_1234567890
+	// console.log(context.query); // {id: 'recipe_1234567890'}
+	// console.log(context.params.id); // recipe_1234567890
 	const res = await fetch(
 		`https://api.edamam.com/api/recipes/v2/${context.params.id}?type=public&app_id=${appID}&app_key=${appKey}`
 	);
@@ -47,11 +47,11 @@ export default function Recipe({ data }) {
 						height={500}
 					/>
 					{/* <Image
-					src={placeholder}
-					alt="meal thumbnail"
-					width={400}
-					height={400}
-				/> */}
+						src={placeholder}
+						alt="meal thumbnail"
+						width={400}
+						height={400}
+					/> */}
 				</a>
 				<h2 className="ingredients-title font-xl font-wt-600">Ingredients</h2>
 				<ul className={styles.ingredients__list}>
