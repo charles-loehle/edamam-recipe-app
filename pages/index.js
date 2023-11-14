@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const appID = process.env.NEXT_PUBLIC_APP_ID;
 const appKey = process.env.NEXT_PUBLIC_APP_KEY;
@@ -37,6 +38,7 @@ export default function Home({ data }) {
 		current: defaultEndpoint, // on page load, defaultEndpoint
 	});
 	const [favorites, setFavorites] = useState([]);
+	const [captcha, setCaptcha] = useState('');
 
 	const { current, next } = page;
 	//console.log(next); // same url as current but the app_key is hashed
@@ -104,6 +106,11 @@ export default function Home({ data }) {
 		  `;
 		// console.log(endpoint);
 		updatePage({ current: endpoint });
+		// recaptcha
+		console.log(captcha);
+		if (captcha) {
+			console.log('ReCAPTCHA verified!');
+		}
 	}
 
 	function saveLocalFavs(recipeId) {
@@ -154,6 +161,10 @@ export default function Home({ data }) {
 					<form className="form display-f" onSubmit={handleOnSubmitSearch}>
 						<div className="form-control">
 							<input className="bg-light-gray" type="search" name="query" />
+							<ReCAPTCHA
+								sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+								onChange={setCaptcha}
+							/>
 						</div>
 
 						<button className="btn-white text-gray">
