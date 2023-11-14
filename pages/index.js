@@ -10,6 +10,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 const appID = process.env.NEXT_PUBLIC_APP_ID;
 const appKey = process.env.NEXT_PUBLIC_APP_KEY;
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+// console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
 const defaultEndpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${appID}&app_key=${appKey}`;
 
@@ -97,20 +98,25 @@ export default function Home({ data }) {
 	function handleOnSubmitSearch(e) {
 		e.preventDefault();
 		// alert('handleOnSubmitSearch');
-		updatePrev(true);
-		const { currentTarget = {} } = e;
-		// The optional chaining operator (?.)
-		const fields = Array.from(currentTarget?.elements);
-		const fieldQuery = fields.find(field => field.name === 'query');
-		const value = fieldQuery.value || '';
-		const endpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=${value}&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1
+		try {
+			// recaptcha
+			console.log(captcha);
+			if (captcha) {
+				console.log('ReCAPTCHA verified!');
+
+				updatePrev(true);
+				const { currentTarget = {} } = e;
+				// The optional chaining operator (?.)
+				const fields = Array.from(currentTarget?.elements);
+				const fieldQuery = fields.find(field => field.name === 'query');
+				const value = fieldQuery.value || '';
+				const endpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=${value}&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1
 		  `;
-		// console.log(endpoint);
-		updatePage({ current: endpoint });
-		// recaptcha
-		console.log(captcha);
-		if (captcha) {
-			console.log('ReCAPTCHA verified!');
+				// console.log(endpoint);
+				updatePage({ current: endpoint });
+			}
+		} catch (error) {
+			console.error(error.message);
 		}
 	}
 
