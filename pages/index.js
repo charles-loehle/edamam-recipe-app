@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import Favorites from '../components/Favorites';
 import Image from 'next/image';
@@ -41,6 +41,7 @@ export default function Home({ data }) {
 	});
 	const [favorites, setFavorites] = useState([]);
 	const [captcha, setCaptcha] = useState('');
+	const captchaRef = useRef();
 
 	const { current, next } = page;
 	//console.log(next); // same url as current but the app_key is hashed
@@ -100,7 +101,6 @@ export default function Home({ data }) {
 		// alert('handleOnSubmitSearch');
 		try {
 			// recaptcha
-			console.log(captcha);
 			if (captcha) {
 				console.log('ReCAPTCHA verified!');
 
@@ -114,7 +114,6 @@ export default function Home({ data }) {
 		  `;
 				// console.log(endpoint);
 				updatePage({ current: endpoint });
-				grecaptcha.reset();
 			}
 		} catch (error) {
 			console.error(error.message);
@@ -169,7 +168,11 @@ export default function Home({ data }) {
 					<form className="form display-f" onSubmit={handleOnSubmitSearch}>
 						<div className="form-control">
 							<input className="bg-light-gray" type="search" name="query" />
-							<ReCAPTCHA sitekey={recaptchaSiteKey} onChange={setCaptcha} />
+							<ReCAPTCHA
+								ref={captchaRef}
+								sitekey={recaptchaSiteKey}
+								onChange={setCaptcha}
+							/>
 						</div>
 
 						<button className="btn-white text-gray">
