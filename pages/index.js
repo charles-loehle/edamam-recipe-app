@@ -114,6 +114,7 @@ export default function Home({ data }) {
 		  `;
 				// console.log(endpoint);
 				updatePage({ current: endpoint });
+				grecaptcha.reset();
 			}
 		} catch (error) {
 			console.error(error.message);
