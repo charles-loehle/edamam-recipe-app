@@ -14,6 +14,8 @@ const defaultEndpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=chi
 export async function getServerSideProps() {
 	const res = await fetch(defaultEndpoint);
 	const data = await res.json();
+	// Limit to 8 recipes
+	data.hits = data.hits.slice(0, 8);
 	return {
 		props: {
 			data,
@@ -37,7 +39,6 @@ export default function Home({ data }) {
 	const [favorites, setFavorites] = useState([]);
 
 	const { current, next } = page;
-	//console.log(current); // https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=14c68664&app_key=cc33a02c16fadb22aea4ecea7184fee1
 	//console.log(next); // same url as current but the app_key is hashed
 
 	useEffect(() => {
@@ -46,6 +47,8 @@ export default function Home({ data }) {
 		async function request() {
 			const res = await fetch(current);
 			const nextData = await res.json();
+			// Limit to 8 recipes
+			nextData.hits = nextData.hits.slice(0, 8);
 
 			updatePage({
 				current,
@@ -179,17 +182,15 @@ export default function Home({ data }) {
 							<div key={index} className="col-12-xs col-6-md col-3-lg">
 								<div className="card">
 									<Link href="/recipe/[id]" as={`/recipe/${recipeId}`}>
-										<a>
-											<Image
-												src={image}
-												alt="recipe thumbnail"
-												width={400}
-												height={400}
-											/>
-											{/* <img src={image} alt="recipe image" /> */}
+										<Image
+											src={image}
+											alt="recipe thumbnail"
+											width={400}
+											height={400}
+										/>
+										{/* <img src={image} alt="recipe image" /> */}
 
-											<div className="recipe-thumbnail"></div>
-										</a>
+										<div className="recipe-thumbnail"></div>
 									</Link>
 									<div className="action-container">
 										<h3 className="card-title m-1">{label}</h3>
@@ -231,3 +232,4 @@ export default function Home({ data }) {
 		</>
 	);
 }
+

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/dist/client/link';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,14 +12,12 @@ const Favorite = ({ favorite, favoriteList, setFavorites }) => {
 	return (
 		<div className="Favorite">
 			<Link href="/recipe/[id]" as={`/recipe/${favorite.recipeId}`}>
-				<a>
-					<Image
-						src={favorite.image}
-						alt="recipe thumbnail"
-						width={100}
-						height={100}
-					/>
-				</a>
+				<Image
+					src={favorite.image}
+					alt="recipe thumbnail"
+					width={100}
+					height={100}
+				/>
 			</Link>
 			<p>{favorite.label}</p>
 			<button onClick={deleteHandler} className="trash-btn">

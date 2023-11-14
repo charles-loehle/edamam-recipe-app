@@ -13,7 +13,7 @@ export async function getServerSideProps(context) {
 		`https://api.edamam.com/api/recipes/v2/${context.params.id}?type=public&app_id=${appID}&app_key=${appKey}`
 	);
 	const data = await res.json();
-
+	console.log(data);
 	return {
 		props: { data },
 	};
@@ -39,7 +39,7 @@ export default function Recipe({ data }) {
 			</nav>
 			<div className="container mt-3 mb-2">
 				<h1 className="recipe-title font-xxl font-wt-600 mt-1">{label}</h1>
-				<a href={url} target="_blank" rel="noopener noreferrer">
+				<Link href={url} target="_blank" rel="noopener noreferrer">
 					<Image
 						src={data.recipe.image}
 						alt="meal thumbnail"
@@ -52,7 +52,7 @@ export default function Recipe({ data }) {
 						width={400}
 						height={400}
 					/> */}
-				</a>
+				</Link>
 				<h2 className="ingredients-title font-xl font-wt-600">Ingredients</h2>
 				<ul className={styles.ingredients__list}>
 					{ingredientLines.map((ingredient, index) => (
@@ -123,17 +123,17 @@ export default function Recipe({ data }) {
 					</ul>
 				</div>
 				<div className="action-buttons mt-2">
-					<a
+					<Link
 						className="btn-primary text-white font-sm"
 						href={url}
 						target="_blank"
 						rel="noopener noreferrer"
 					>
 						View Recipe
-					</a>
+					</Link>
 
 					<Link href="/">
-						<a className={styles.back}>Go Back</a>
+						<Link className={styles.back}>Go Back</Link>
 					</Link>
 				</div>
 			</div>
