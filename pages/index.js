@@ -9,6 +9,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 const appID = process.env.NEXT_PUBLIC_APP_ID;
 const appKey = process.env.NEXT_PUBLIC_APP_KEY;
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
 const defaultEndpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${appID}&app_key=${appKey}`;
 
@@ -161,10 +162,7 @@ export default function Home({ data }) {
 					<form className="form display-f" onSubmit={handleOnSubmitSearch}>
 						<div className="form-control">
 							<input className="bg-light-gray" type="search" name="query" />
-							<ReCAPTCHA
-								sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-								onChange={setCaptcha}
-							/>
+							<ReCAPTCHA sitekey={recaptchaSiteKey} onChange={setCaptcha} />
 						</div>
 
 						<button className="btn-white text-gray">
